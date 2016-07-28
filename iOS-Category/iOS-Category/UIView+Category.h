@@ -9,26 +9,30 @@
 
 
 @interface UIView (MotionEffect)
-
+//UIMotionEffect和Home页背景视差效果
 - (void) addCenterMotionEffectsXYWithOffset:(CGFloat)offset;
-
 @end
-
-
 
 
 @interface UIView (Window)
 
+//把View加在Window上
 - (void) addToWindow;
 
 @end
 
 @interface UIView (Screenshot)
-- (UIImage*) screenshot;
-- (UIImage*) screenshotForScrollViewWithContentOffset:(CGPoint)contentOffset;
-- (UIImage*) screenshotInFrame:(CGRect)frame;
-@end
 
+//View截图
+- (UIImage*) screenshot;
+
+//ScrollView截图 contentOffset
+- (UIImage*) screenshotForScrollViewWithContentOffset:(CGPoint)contentOffset;
+
+//View按Rect截图
+- (UIImage*) screenshotInFrame:(CGRect)frame;
+
+@end
 
 
 

@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface UIView (Animation)
-
 @property(nonatomic,copy)void(^completeBlock)();
 
 - (void) shakeAnimation;
@@ -22,5 +21,4 @@
           duration:(CGFloat)duration completedBlock:(void(^)())completedBlock;
 
 - (void) praiseAnimation;
-
 @end

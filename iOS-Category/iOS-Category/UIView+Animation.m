@@ -11,7 +11,6 @@
 #import <objc/runtime.h>
 
 @implementation UIView (Animation)
-
 static const void *UtilityKey = &UtilityKey;
 
 -(void)setCompleteBlock:(void (^)())completeBlock
@@ -115,6 +114,4 @@ static const void *UtilityKey = &UtilityKey;
     praiseAnimation.calculationMode = kCAAnimationLinear;
     [self.layer addAnimation:praiseAnimation forKey:@"praiseAnimation"];
 }
-
-
 @end

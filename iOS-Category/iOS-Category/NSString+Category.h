@@ -12,12 +12,10 @@
 @interface NSString (Category)
 
 
-+ (NSString*) countNumAndChangeformat:(NSString *)num;
-
-//电话号码加*显示
+//电话号码中间4位****显示
 + (NSString*) getSecrectStringWithPhoneNumber:(NSString*)phoneNum;
 
-//银行卡号加*显示
+//银行卡号中间8位显示
 + (NSString*) getSecrectStringWithAccountNo:(NSString*)accountNo;
 
 //计算文字高度
@@ -32,17 +30,16 @@
 @end
 
 
-@interface NSString (urlEncode)
-- (NSString *)URLEncodedString;
-@end
-
-
 @interface NSString (Base64)
+//Data类型转换为Base64
 + (NSString *)base64StringFromData:(NSData *)data length:(NSUInteger)length;
 @end
 
 
 @interface NSString (Format)
+//转为电话格式
 + (NSString*) stringMobileFormat:(NSString*)mobile;
+
+//数组中文格式（几万）可自行添加
 + (NSString*) stringChineseFormat:(double)value;
 @end

@@ -103,26 +103,6 @@
     return mutableAttributedString;
     
 }
-+ (NSMutableAttributedString *)attributeStringWithSubffixString:(NSString *)subffixString
-                                                    prefixImage:(UIImage *)image
-                                                      imageRect:(CGRect)rect
-{
-    
-    NSString *string = subffixString;
-    NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] init];
-    
-    NSTextAttachment *backAttachment = [[NSTextAttachment alloc] init];
-    backAttachment.image = image;
-    backAttachment.bounds = rect;
-    NSAttributedString *backString = [NSAttributedString attributedStringWithAttachment:backAttachment];
-    
-    [mutableAttributedString appendAttributedString:backString];
-    
-    
-    [mutableAttributedString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:subffixString]];
-    
-    return mutableAttributedString;
-    
-}
+
 
 @end

@@ -10,6 +10,7 @@
 
 @interface UIView (BGFrame)
 
+//不用再蛋疼的写某view.frame=CGRectMake(x,y,z,o)了。
 - (CGFloat)left;
 - (CGFloat)right;
 - (CGSize)size;

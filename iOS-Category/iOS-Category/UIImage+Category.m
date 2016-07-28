@@ -42,21 +42,7 @@
     
     return [self stretchableImageWithLeftCapWidth:insets.left topCapHeight:insets.top];
 }
-+ (UIImage *) imageByScalingToMaxSize:(UIImage *)sourceImage
-{
-    if (sourceImage.size.width < ORIGINAL_MAX_WIDTH) return sourceImage;
-    CGFloat btWidth = 0.0f;
-    CGFloat btHeight = 0.0f;
-    if (sourceImage.size.width > sourceImage.size.height) {
-        btHeight = ORIGINAL_MAX_WIDTH;
-        btWidth = sourceImage.size.width * (ORIGINAL_MAX_WIDTH / sourceImage.size.height);
-    } else {
-        btWidth = ORIGINAL_MAX_WIDTH;
-        btHeight = sourceImage.size.height * (ORIGINAL_MAX_WIDTH / sourceImage.size.width);
-    }
-    CGSize targetSize = CGSizeMake(btWidth, btHeight);
-    return [self imageByScalingAndCroppingForSourceImage:sourceImage targetSize:targetSize];
-}
+
 
 + (UIImage *) imageByScalingAndCroppingForSourceImage:(UIImage *)sourceImage targetSize:(CGSize)targetSize {
     UIImage *newImage = nil;
@@ -122,21 +108,7 @@
     return image;
 }
 
-- (UIImage*) imageWithColor:(UIColor *)color {
-    UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextTranslateCTM(context, 0, self.size.height);
-    CGContextScaleCTM(context, 1.0, -1.0);
-    CGContextSetBlendMode(context, kCGBlendModeNormal);
-    CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
-    CGContextClipToMask(context, rect, self.CGImage);
-    [color setFill];
-    CGContextFillRect(context, rect);
-    UIImage*newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return newImage;
-}
+
 - (UIImage *)imageByResizeToScale:(CGFloat)scale{
     CGSize size = CGSizeMake(self.size.width *scale, self.size.height * scale);
     if (size.width <= 0 || size.height <= 0) return nil;
@@ -246,38 +218,6 @@
 
 
 
-- (UIImage *)imageByRotate:(CGFloat)radians fitSize:(BOOL)fitSize {
-    size_t width = (size_t)CGImageGetWidth(self.CGImage);
-    size_t height = (size_t)CGImageGetHeight(self.CGImage);
-    CGRect newRect = CGRectApplyAffineTransform(CGRectMake(0., 0., width, height),
-                                                fitSize ? CGAffineTransformMakeRotation(radians) : CGAffineTransformIdentity);
-    
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(NULL,
-                                                 (size_t)newRect.size.width,
-                                                 (size_t)newRect.size.height,
-                                                 8,
-                                                 (size_t)newRect.size.width * 4,
-                                                 colorSpace,
-                                                 kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
-    CGColorSpaceRelease(colorSpace);
-    if (!context) return nil;
-    
-    CGContextSetShouldAntialias(context, true);
-    CGContextSetAllowsAntialiasing(context, true);
-    CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
-    
-    CGContextTranslateCTM(context, +(newRect.size.width * 0.5), +(newRect.size.height * 0.5));
-    CGContextRotateCTM(context, radians);
-    
-    CGContextDrawImage(context, CGRectMake(-(width * 0.5), -(height * 0.5), width, height), self.CGImage);
-    CGImageRef imgRef = CGBitmapContextCreateImage(context);
-    UIImage *img = [UIImage imageWithCGImage:imgRef scale:self.scale orientation:self.imageOrientation];
-    CGImageRelease(imgRef);
-    CGContextRelease(context);
-    return img;
-}
-
 - (UIImage *)_yy_flipHorizontal:(BOOL)horizontal vertical:(BOOL)vertical {
     if (!self.CGImage) return nil;
     size_t width = (size_t)CGImageGetWidth(self.CGImage);
@@ -307,14 +247,6 @@
     UIImage *img = [UIImage imageWithCGImage:imgRef scale:self.scale orientation:self.imageOrientation];
     CGImageRelease(imgRef);
     return img;
-}
-
-- (UIImage *)imageByRotateLeft90 {
-    return [self imageByRotate:DegreesToRadians(90) fitSize:YES];
-}
-
-- (UIImage *)imageByRotateRight90 {
-    return [self imageByRotate:DegreesToRadians(-90) fitSize:YES];
 }
 
 - (UIImage *)imageByRotate180 {

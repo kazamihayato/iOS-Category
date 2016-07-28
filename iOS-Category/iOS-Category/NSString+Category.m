@@ -10,36 +10,6 @@
 
 @implementation NSString (Category)
 
-+(NSString *)countNumAndChangeformat:(NSString *)num
-{
-    NSMutableString *temp = [NSMutableString stringWithString:num];
-    NSRange afterPointRange=NSMakeRange(num.length-3, 3);
-    NSString * afterPoint=[temp substringWithRange:afterPointRange];
-    [temp deleteCharactersInRange:afterPointRange];
-    
-    int count = 0;
-    long long int a = temp.longLongValue;
-    while (a != 0)
-    {
-        count++;
-        a /= 10;
-    }
-    NSMutableString *string = [NSMutableString stringWithString:temp];
-    NSMutableString *newstring = [NSMutableString string];
-    while (count > 3) {
-        count -= 3;
-        NSRange rang = NSMakeRange(string.length - 3, 3);
-        NSString *str = [string substringWithRange:rang];
-        [newstring insertString:str atIndex:0];
-        [newstring insertString:@"," atIndex:0];
-        [string deleteCharactersInRange:rang];
-    }
-    [newstring insertString:string atIndex:0];
-    [newstring insertString:afterPoint atIndex:newstring.length];
-    return newstring;
-}
-
-
 
 + (NSString*) getSecrectStringWithPhoneNumber:(NSString*)phoneNum
 {
@@ -83,24 +53,37 @@
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]];
 }
 
++ (NSString*) stringMobileFormat:(NSString *)mobile {
+    if ([mobile isValidMobileNumber]) {
+        NSMutableString* value = [[NSMutableString alloc] initWithString:mobile];
+        [value insertString:@" " atIndex:3];
+        [value insertString:@" " atIndex:8];
+        return value;
+    }
+    
+    return nil;
+}
 
-@end
 
-
-
-@implementation NSString (urlEncode)
-
-- (NSString *)URLEncodedString {
-    NSString *encodedString = (NSString *)
-    CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-                                            (CFStringRef)self,
-                                            (CFStringRef)@"!$&'()*+,-./:;=?@_~%#[]",
-                                            NULL,
-                                            kCFStringEncodingUTF8));
-    return encodedString;
++ (NSString*) stringChineseFormat:(double)value{
+    
+    if (value / 100000000 >= 1) {
+        return [NSString stringWithFormat:@"%.0f亿",value/100000000];
+    }
+    else if (value / 10000 >= 1 && value / 100000000 < 1) {
+        return [NSString stringWithFormat:@"%.0f万",value/10000];
+    }
+    else {
+        return [NSString stringWithFormat:@"%.0f",value];
+    }
+    
 }
 
 @end
+
+
+
+
 
 
 
@@ -180,31 +163,6 @@ static char base64EncodingTable[64] = {
 
 @implementation NSString (Format)
 
-+ (NSString*) stringMobileFormat:(NSString *)mobile {
-    if ([mobile isValidMobileNumber]) {
-        NSMutableString* value = [[NSMutableString alloc] initWithString:mobile];
-        [value insertString:@" " atIndex:3];
-        [value insertString:@" " atIndex:8];
-        return value;
-    }
-    
-    return nil;
-}
-
-
-+ (NSString*) stringChineseFormat:(double)value{
-    
-    if (value / 100000000 >= 1) {
-        return [NSString stringWithFormat:@"%.0f亿",value/100000000];
-    }
-    else if (value / 10000 >= 1 && value / 100000000 < 1) {
-        return [NSString stringWithFormat:@"%.0f万",value/10000];
-    }
-    else {
-        return [NSString stringWithFormat:@"%.0f",value];
-    }
-
-}
 
 
 

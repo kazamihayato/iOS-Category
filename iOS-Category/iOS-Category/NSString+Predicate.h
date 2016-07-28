@@ -41,6 +41,4 @@
 //限制只能输入数字
 - (BOOL) isOnlyNumber;
 
-//限制只能输入数字和小数点且小数点后保留两位
-- (BOOL) isOnlyNumberCashRange:(NSRange)range;
 @end

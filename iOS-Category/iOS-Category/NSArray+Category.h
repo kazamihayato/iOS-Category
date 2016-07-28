@@ -9,19 +9,18 @@
 #import <Foundation/Foundation.h>
 
 @interface NSArray (Category)
+//以下写法均防止闪退
++ (instancetype)safeArrayWithObject:(id)object;
 
-- (NSInteger)integerAtIndex:(NSInteger)index;//取数值数组中的Integer
+- (id)safeObjectAtIndex:(NSUInteger)index;
 
-+ (NSArray *)arrayNamed:(NSString *)name;    //通过Plist名取到Plist文件中的数组
+- (NSArray *)safeSubarrayWithRange:(NSRange)range;
 
-- (id)objectAt:(NSUInteger)index;            //防止下标数字越界而产生闪退
+- (NSUInteger)safeIndexOfObject:(id)anObject;
 
+//通过Plist名取到Plist文件中的数组
++ (NSArray *)arrayNamed:(NSString *)name;
 
-/**
- *  数组转成json 字符串
- *
- *  @return
- */
-
+// 数组转成json 字符串
 - (NSString *)toJSONStringForArray;
 @end
