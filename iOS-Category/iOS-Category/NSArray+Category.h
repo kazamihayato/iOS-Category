@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface NSArray (Category)
-//以下写法均防止闪退
+//建议每次对Array操作时都用以下方法，提高健壮性
 + (instancetype)safeArrayWithObject:(id)object;
 
 - (id)safeObjectAtIndex:(NSUInteger)index;
@@ -17,6 +17,7 @@
 - (NSArray *)safeSubarrayWithRange:(NSRange)range;
 
 - (NSUInteger)safeIndexOfObject:(id)anObject;
+
 
 //通过Plist名取到Plist文件中的数组
 + (NSArray *)arrayNamed:(NSString *)name;

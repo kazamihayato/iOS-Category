@@ -1,15 +1,14 @@
 //
-//  UIView+BGFrame
-//  AIFCore
+//  UIView+Frame.h
+//  iOS-Category
 //
-//  Created by yintengxiang on 14-1-27.
-//  Copyright (c) 2014年 . All rights reserved.
+//  Created by 庄BB的MacBook on 2017/8/23.
+//  Copyright © 2017年 BBFC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface UIView (BGFrame)
-
+@interface UIView (Frame)
 //不用再蛋疼的写某view.frame=CGRectMake(x,y,z,o)了。
 - (CGFloat)left;
 - (CGFloat)right;
@@ -34,5 +33,4 @@
 - (void)setOrigin:(CGPoint)point;
 - (void)setAddTop:(CGFloat)top;
 - (void)setAddLeft:(CGFloat)left;
-
 @end

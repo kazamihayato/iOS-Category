@@ -7,15 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-
-@interface UIView (MotionEffect)
-//UIMotionEffect和Home页背景视差效果
-- (void) addCenterMotionEffectsXYWithOffset:(CGFloat)offset;
-@end
-
-
-@interface UIView (Window)
-
+@interface UIView (Category)
 //把View加在Window上
 - (void) addToWindow;
 
@@ -34,5 +26,13 @@
 
 @end
 
+@interface UIView (Animation)
 
+//左右抖动动画
+- (void) shakeAnimation;
+
+//旋转180度
+- (void) trans180DegreeAnimation;
+
+@end
 

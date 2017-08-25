@@ -10,11 +10,8 @@
 
 @implementation NSString (DisplayTime)
 
-
-
 +(NSString *) compareCurrentTime:(NSTimeInterval) compareDate
 {
-    
     NSDate *confromTimesp        = [NSDate dateWithTimeIntervalSince1970:compareDate/1000];
     
     NSTimeInterval  timeInterval = [confromTimesp timeIntervalSinceNow];

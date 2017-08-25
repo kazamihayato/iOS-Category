@@ -63,12 +63,6 @@
     }
 }
 
-+ (NSArray *)arrayNamed:(NSString *)name
-{
-    NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:@"plist"];
-    return [NSArray arrayWithContentsOfFile:path];
-}
-
 
 - (NSString *)toJSONStringForArray
 {

@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface NSMutableArray (Category)
-//以下写法均防止闪退
+
+//建议每次对Array操作时都用以下方法，提高健壮性
 - (void)safeAddObject:(id)object;
 
 - (void)safeInsertObject:(id)object atIndex:(NSUInteger)index;

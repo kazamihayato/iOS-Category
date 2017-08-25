@@ -1,15 +1,14 @@
 //
-//  UIView+BGFrame
-//  AIFCore
+//  UIView+Frame.m
+//  iOS-Category
 //
-//  Created by yintengxiang on 14-1-27.
-//  Copyright (c) 2014年 . All rights reserved.
+//  Created by 庄BB的MacBook on 2017/8/23.
+//  Copyright © 2017年 BBFC. All rights reserved.
 //
 
-#import "UIView+BGFrame.h"
+#import "UIView+Frame.h"
 
-@implementation UIView (BGFrame)
-
+@implementation UIView (Frame)
 - (CGFloat)left
 {
     return self.frame.origin.x;

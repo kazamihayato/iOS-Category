@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface NSMutableDictionary (Category)
+//建议每次对Array操作时都用以下方法，提高健壮性
 - (void)safeSetObject:(id)aObj forKey:(id<NSCopying>)aKey;
 
 - (id)safeObjectForKey:(id<NSCopying>)aKey;

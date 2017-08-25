@@ -8,6 +8,23 @@
 
 #import "UIButton+Category.h"
 #import <objc/runtime.h>
+
+@implementation UIButton (Category)
+
+-(void)addCallBackAction:(ButtonActionCallBack)action
+        forControlEvents:(UIControlEvents)controlEvents
+{
+    [self addCallBackAction:action forControlEvents:controlEvents];
+}
+
+-(void)addCallBackAction:(ButtonActionCallBack)action
+{
+    [self addCallBackAction:action forControlEvents:UIControlEventTouchUpInside];
+}
+@end
+
+
+
 @implementation UIButton (EnlargeTouchArea)
 
 static char topNameKey;

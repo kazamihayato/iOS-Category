@@ -9,41 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
 
-@implementation UIView (MotionEffect)
-
-NSString *const centerX = @"center.x";
-NSString *const centerY = @"center.y";
-
-#pragma mark - Motion Effect
-- (void)addCenterMotionEffectsXYWithOffset:(CGFloat)offset {
-    
-    //    if(!IS_OS_7_OR_LATER) return;
-    if(floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) return;
-    
-    UIInterpolatingMotionEffect *xAxis;
-    UIInterpolatingMotionEffect *yAxis;
-    
-    xAxis = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:centerX
-                                                            type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-    xAxis.maximumRelativeValue = @(offset);
-    xAxis.minimumRelativeValue = @(-offset);
-    
-    yAxis = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:centerY
-                                                            type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
-    yAxis.minimumRelativeValue = @(-offset);
-    yAxis.maximumRelativeValue = @(offset);
-    
-    UIMotionEffectGroup *group = [[UIMotionEffectGroup alloc] init];
-    group.motionEffects = @[xAxis, yAxis];
-    
-    [self addMotionEffect:group];
-}
-
-@end
-
-
-
-@implementation UIView (AddToWindow)
+@implementation UIView (Category)
 
 -(void) addToWindow
 {
@@ -110,5 +76,30 @@ NSString *const centerY = @"center.y";
 
 @end
 
+@implementation UIView (Animation)
 
+- (void) shakeAnimation {
+    
+    CALayer* layer = [self layer];
+    CGPoint position = [layer position];
+    CGPoint y = CGPointMake(position.x - 8.0f, position.y);
+    CGPoint x = CGPointMake(position.x + 8.0f, position.y);
+    CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@"position"];
+    [animation setTimingFunction:[CAMediaTimingFunction
+                                  functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [animation setFromValue:[NSValue valueWithCGPoint:x]];
+    [animation setToValue:[NSValue valueWithCGPoint:y]];
+    [animation setAutoreverses:YES];
+    [animation setDuration:0.08f];
+    [animation setRepeatCount:3];
+    [layer addAnimation:animation forKey:nil];
+}
+
+- (void) trans180DegreeAnimation
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.layer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
+    }];
+}
+@end
 
