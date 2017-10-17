@@ -54,14 +54,14 @@
    <br>
    //去掉前后空格<br>
    - (NSString*) trimmedString;<br>
-   ```<br>
+<br>
    2.常用的正则表达式判断<br>
    ```<br>
    //有效的电话号码<br>
-   - (BOOL) isValidMobileNumber;<br>
+   - (BOOL) isValidMobileNumber;
    <br>
    //有效的真实姓名<br>
-   - (BOOL) isValidRealName;<br>
+   - (BOOL) isValidRealName;  
    <br>
    //是否只有中文<br>
    - (BOOL) isOnlyChinese;<br>
