@@ -25,9 +25,9 @@
    **NSString** 部分包括：<br>
    1.一些在项目中常用的方法<br>
    ```
-   //电话号码中间4位*显示<br>
-   + (NSString*) getSecrectStringWithPhoneNumber:(NSString*)phoneNum;<br>
-   <br>
+   //电话号码中间4位*显示
+   + (NSString*) getSecrectStringWithPhoneNumber:(NSString*)phoneNum;
+
    //银行卡号中间8位*显示<br>
    + (NSString*) getSecrectStringWithAccountNo:(NSString*)accountNo;<br>
    <br>
