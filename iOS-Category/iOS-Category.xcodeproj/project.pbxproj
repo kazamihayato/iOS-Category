@@ -27,6 +27,7 @@
 		3DC9041F1F4D87E200E56004 /* UIColor+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC9041E1F4D87E200E56004 /* UIColor+Category.m */; };
 		3DC904221F4EAE2F00E56004 /* NSString+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC904211F4EAE2F00E56004 /* NSString+Safe.m */; };
 		3DC904251F4EB8CD00E56004 /* NSMutableString+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC904241F4EB8CD00E56004 /* NSMutableString+Safe.m */; };
+		3DD78BCD1F669053003B8E9F /* UITableView+CellAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD78BCC1F669053003B8E9F /* UITableView+CellAnimation.m */; };
 		3DFA22E11D4A73BB008F340E /* NSMutableDictionary+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFA22E01D4A73BB008F340E /* NSMutableDictionary+Category.m */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,8 @@
 		3DC904211F4EAE2F00E56004 /* NSString+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Safe.m"; sourceTree = "<group>"; };
 		3DC904231F4EB8CD00E56004 /* NSMutableString+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+Safe.h"; sourceTree = "<group>"; };
 		3DC904241F4EB8CD00E56004 /* NSMutableString+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+Safe.m"; sourceTree = "<group>"; };
+		3DD78BCB1F669053003B8E9F /* UITableView+CellAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+CellAnimation.h"; sourceTree = "<group>"; };
+		3DD78BCC1F669053003B8E9F /* UITableView+CellAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+CellAnimation.m"; sourceTree = "<group>"; };
 		3DFA22DF1D4A73BB008F340E /* NSMutableDictionary+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Category.h"; sourceTree = "<group>"; };
 		3DFA22E01D4A73BB008F340E /* NSMutableDictionary+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Category.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,6 +121,7 @@
 		3D8217971D3F44C90077850F /* iOS-Category */ = {
 			isa = PBXGroup;
 			children = (
+				3DD78BCA1F669025003B8E9F /* TableView */,
 				3DC904061F4D5DC700E56004 /* NSString */,
 				3DC904091F4D5EF200E56004 /* NSDictionary */,
 				3DC904081F4D5EE300E56004 /* NSArray */,
@@ -252,6 +256,15 @@
 			name = NSObject;
 			sourceTree = "<group>";
 		};
+		3DD78BCA1F669025003B8E9F /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				3DD78BCB1F669053003B8E9F /* UITableView+CellAnimation.h */,
+				3DD78BCC1F669053003B8E9F /* UITableView+CellAnimation.m */,
+			);
+			name = TableView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -314,6 +327,7 @@
 				3DC9041C1F4D7E6E00E56004 /* UIView+Frame.m in Sources */,
 				3D8217E81D3F45A20077850F /* NSString+Category.m in Sources */,
 				3DC904191F4D798C00E56004 /* NSObject+Swizzle.m in Sources */,
+				3DD78BCD1F669053003B8E9F /* UITableView+CellAnimation.m in Sources */,
 				3DC904131F4D748700E56004 /* NSObject+Category.m in Sources */,
 				3D8217EA1D3F45A20077850F /* NSString+MD5.m in Sources */,
 				3D8217E11D3F45A20077850F /* NSAttributedString+Category.m in Sources */,

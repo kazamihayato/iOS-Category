@@ -31,7 +31,6 @@
     range.location = 4;
     NSString *bString = [cString substringWithRange:range];
     
-    
     unsigned int r, g, b;
     [[NSScanner scannerWithString:rString] scanHexInt:&r];
     [[NSScanner scannerWithString:gString] scanHexInt:&g];
