@@ -24,10 +24,10 @@
    ### NSString && NSAttributedString<br>
    **NSString** 部分包括：<br>
    1.一些在项目中常用的方法<br>
-   ```
-   //电话号码中间4位*显示
-   + (NSString*) getSecrectStringWithPhoneNumber:(NSString*)phoneNum;
-
+   <br>
+   //电话号码中间4位*显示<br>
+   + (NSString*) getSecrectStringWithPhoneNumber:(NSString*)phoneNum;<br>
+   <br>
    //银行卡号中间8位*显示<br>
    + (NSString*) getSecrectStringWithAccountNo:(NSString*)accountNo;<br>
    <br>
@@ -56,12 +56,12 @@
    - (NSString*) trimmedString;<br>
 <br>
    2.常用的正则表达式判断<br>
-   ```<br>
+   <br>
    //有效的电话号码<br>
-   - (BOOL) isValidMobileNumber;
+   - (BOOL) isValidMobileNumber;<br>
    <br>
    //有效的真实姓名<br>
-   - (BOOL) isValidRealName;  
+   - (BOOL) isValidRealName;<br>
    <br>
    //是否只有中文<br>
    - (BOOL) isOnlyChinese;<br>
@@ -87,9 +87,9 @@
    <br>
    //限制只能输入数字<br>
    - (BOOL) isOnlyNumber;<br>
-   ```
+<br>
    3.从时间戳转为显示时间（几小时前等）<br>
-   ```
+<br>
    //通过时间戳计算时间差（几小时前、几天前）<br>
    + (NSString *) compareCurrentTime:(NSTimeInterval) compareDate;<br>
    <br>
@@ -98,234 +98,234 @@
    <br>
    //通过时间戳和格式显示时间<br>
    + (NSString *) getStringWithTimestamp:(NSTimeInterval)timestamp formatter:(NSString*)formatter;<br>
-   ```<br>
-   4.提高NSString && NSMutableString 健壮性的写法（建议各位平时操作NSString及NSMutableString尽量使用，减少闪退）
-   **NSString**：
-   ```
-   - (NSString *)safeSubstringFromIndex:(NSUInteger)from;
-   
-   - (NSString *)safeSubstringToIndex:(NSUInteger)to;
-   
-   - (NSString *)safeSubstringWithRange:(NSRange)range;
-   
-   - (NSRange)safeRangeOfString:(NSString *)aString;
-   
-   - (NSRange)safeRangeOfString:(NSString *)aString options:(NSStringCompareOptions)mask;
-   
-   - (NSString *)safeStringByAppendingString:(NSString *)aString;
-   ```
-   **NSMutableString**：
-   ```
-   - (void)safeInsertString:(NSString *)aString atIndex:(NSUInteger)loc;
-   
-   - (void)safeAppendString:(NSString *)aString;
-   
-   - (void)safeSetString:(NSString *)aString;
-   ```
-   **NSAttributedString**部分：
-   经过思考后只保留了计算富文本的高度方法，其他需求请用各自的富文本控件完成
-   ```
-   //由于系统计算富文本的高度不正确，自己写了方法
-   - (CGFloat)heightWithContainWidth:(CGFloat)width;
-   ```
-   
-   ###NSArray && NSDictionary
-   这两个大类的分类主要是提升健壮性（建议各位平时操作NSString及NSMutableString尽量使用，减少闪退）以及转为json字符串
-   
-   **NSArray、NSMutableArray**：
-   ```
-   @interface NSArray (Category)
-   //以下写法均防止闪退
-   + (instancetype)safeArrayWithObject:(id)object;
-   
-   - (id)safeObjectAtIndex:(NSUInteger)index;
-   
-   - (NSArray *)safeSubarrayWithRange:(NSRange)range;
-   
-   - (NSUInteger)safeIndexOfObject:(id)anObject;
-   
-   // 数组转成json 字符串
-   - (NSString *)toJSONStringForArray;
-   @end
-   
-   @interface NSMutableArray (Category)
-   //以下写法均防止闪退
-   - (void)safeAddObject:(id)object;
-   
-   - (void)safeInsertObject:(id)object atIndex:(NSUInteger)index;
-   
-   - (void)safeInsertObjects:(NSArray *)objects atIndexes:(NSIndexSet *)indexs;
-   
-   - (void)safeRemoveObjectAtIndex:(NSUInteger)index;
-   
-   - (void)safeRemoveObjectsInRange:(NSRange)range;
-   @end
-   ```
-   
-   ###NSDictionary、NSMutableDictionary
-   ```
-   @interface NSDictionary (Category)
-   
-   //用于数据解析，返回对象为字符串或值类型，数组和字典不要用此方法
-   - (id)safeObjectForKey:(NSString *)key;
-   
-   //设置键值对 针对对象为空处理
-   - (void)safeSetObject:(id)object forKey:(id)key;
-   - (id)objectForKeyCustom:(id)aKey;
-   
-   - (id)safeKeyForValue:(id)value;
-   
-   /**
-   *  字段转成json的字符串
-   *
-   *  @return json 字符串
-   */
-   - (NSString *)toJSONStringForDictionary;
-   @end
-   
-   @interface NSMutableDictionary (Category)
-   - (void)safeSetObject:(id)aObj forKey:(id<NSCopying>)aKey;
-   
-   - (id)safeObjectForKey:(id<NSCopying>)aKey;
-   @end
-   ```
-   ###NSObject
-   **NSObject**部分包括：
-   1.为当前object动态增加属性
-   ```
-   @property (nonatomic, strong, readonly) NSMutableArray *associatedObjectNames;
-   
-   //为当前object动态增加分类
-   - (void)objc_setAssociatedObject:(NSString *)propertyName value:(id)value policy:(objc_AssociationPolicy)policy;
-   
-   //获取当前object某个动态增加的分类
-   - (id)objc_getAssociatedObject:(NSString *)propertyName;
-   
-   //删除动态增加的所有分类
-   - (void)objc_removeAssociatedObjects;
-   
-   //获取对象的所有属性
-   - (NSArray *)getProperties;
-   ```
-   2.dispatch主线程和非主线程的快捷写法
-   ```
-   // try catch
-   + (NSException *)tryCatch:(void(^)())block;
-   + (NSException *)tryCatch:(void(^)())block finally:(void(^)())aFinisheBlock;
-   
-   // 在主线程运行block
-   + (void)performInMainThreadBlock:(void(^)())aInMainBlock;
-   
-   //延时在主线程运行block
-   + (void)performInMainThreadBlock:(void(^)())aInMainBlock afterSecond:(NSTimeInterval)delay;
-   
-   //在非主线程运行block
-   + (void)performInThreadBlock:(void(^)())aInThreadBlock;
-   
-   //延时在非主线程运行block
-   + (void)performInThreadBlock:(void(^)())aInThreadBlock afterSecond:(NSTimeInterval)delay;
-   ```
-   3.Runtime 覆盖方法、交换方法
-   ```
-   + (BOOL)overrideMethod:(SEL)origSel withMethod:(SEL)altSel;
-   
-   + (BOOL)overrideClassMethod:(SEL)origSel withClassMethod:(SEL)altSel;
-   
-   + (BOOL)exchangeMethod:(SEL)origSel withMethod:(SEL)altSel;
-   
-   + (BOOL)exchangeClassMethod:(SEL)origSel withClassMethod:(SEL)altSel;
-   ```
+   <br>
+   4.提高NSString && NSMutableString 健壮性的写法（建议各位平时操作NSString及NSMutableString尽量使用，减少闪退）<br>
+   **NSString**：<br>
+    <br>
+   - (NSString *)safeSubstringFromIndex:(NSUInteger)from;<br>
+   <br>
+   - (NSString *)safeSubstringToIndex:(NSUInteger)to;<br>
+   <br>
+   - (NSString *)safeSubstringWithRange:(NSRange)range;<br>
+   <br>
+   - (NSRange)safeRangeOfString:(NSString *)aString;<br>
+   <br>
+   - (NSRange)safeRangeOfString:(NSString *)aString options:(NSStringCompareOptions)mask;<br>
+   <br>
+   - (NSString *)safeStringByAppendingString:(NSString *)aString;<br>
+   <br>
+   **NSMutableString**：<br>
+   <br>
+   - (void)safeInsertString:(NSString *)aString atIndex:(NSUInteger)loc;<br>
+   <br>
+   - (void)safeAppendString:(NSString *)aString;<br>
+   <br>
+   - (void)safeSetString:(NSString *)aString;<br>
+   <br>
+   **NSAttributedString**部分：<br>
+   经过思考后只保留了计算富文本的高度方法，其他需求请用各自的富文本控件完成<br>
+   <br>
+   //由于系统计算富文本的高度不正确，自己写了方法<br>
+   - (CGFloat)heightWithContainWidth:(CGFloat)width;<br>
+   <br>
+   <br>
+   ###NSArray && NSDictionary<br>
+   这两个大类的分类主要是提升健壮性（建议各位平时操作NSString及NSMutableString尽量使用，减少闪退）以及转为json字符串<br>
+   <br>
+   **NSArray、NSMutableArray**：<br>
+    <br>
+   @interface NSArray (Category)<br>
+   //以下写法均防止闪退<br>
+   + (instancetype)safeArrayWithObject:(id)object;<br>
+   <br>
+   - (id)safeObjectAtIndex:(NSUInteger)index;<br>
+   <br>
+   - (NSArray *)safeSubarrayWithRange:(NSRange)range;<br>
+   <br>
+   - (NSUInteger)safeIndexOfObject:(id)anObject;<br>
+   <br>
+   // 数组转成json 字符串<br>
+   - (NSString *)toJSONStringForArray;<br>
+   @end<br>
+   <br>
+   @interface NSMutableArray (Category)<br>
+   //以下写法均防止闪退<br>
+   - (void)safeAddObject:(id)object;<br>
+   <br>
+   - (void)safeInsertObject:(id)object atIndex:(NSUInteger)index;<br>
+   <br>
+   - (void)safeInsertObjects:(NSArray *)objects atIndexes:(NSIndexSet *)indexs;<br>
+   <br>
+   - (void)safeRemoveObjectAtIndex:(NSUInteger)index;<br>
+   <br>
+   - (void)safeRemoveObjectsInRange:(NSRange)range;<br>
+   @end<br>
+<br>
+   <br>
+   ###NSDictionary、NSMutableDictionary<br>
+   <br>
+   @interface NSDictionary (Category)<br>
+   <br>
+   //用于数据解析，返回对象为字符串或值类型，数组和字典不要用此方法<br>
+   - (id)safeObjectForKey:(NSString *)key;<br>
+   <br>
+   //设置键值对 针对对象为空处理<br>
+   - (void)safeSetObject:(id)object forKey:(id)key;<br>
+   - (id)objectForKeyCustom:(id)aKey;<br>
+   <br>
+   - (id)safeKeyForValue:(id)value;<br>
+   <br>
+    <br>
+   *  字段转成json的字符串<br>
+   *<br>
+   *  @return json 字符串<br>
+   */<br>
+   - (NSString *)toJSONStringForDictionary;<br>
+   @end<br>
+   <br>
+   @interface NSMutableDictionary (Category)<br>
+   - (void)safeSetObject:(id)aObj forKey:(id<NSCopying>)aKey;<br>
+   <br>
+   - (id)safeObjectForKey:(id<NSCopying>)aKey;<br>
+   @end<br>
+<br>
+   ###NSObject<br>
+   **NSObject**部分包括：<br>
+   1.为当前object动态增加属性<br>
+<br>
+   @property (nonatomic, strong, readonly) NSMutableArray *associatedObjectNames;<br>
+   <br>
+   //为当前object动态增加分类<br>
+   - (void)objc_setAssociatedObject:(NSString *)propertyName value:(id)value policy:(objc_AssociationPolicy)policy;<br>
+   <br>
+   //获取当前object某个动态增加的分类<br>
+   - (id)objc_getAssociatedObject:(NSString *)propertyName;<br>
+   <br>
+   //删除动态增加的所有分类<br>
+   - (void)objc_removeAssociatedObjects;<br>
+   <br>
+   //获取对象的所有属性<br>
+   - (NSArray *)getProperties;<br>
+<br>
+   2.dispatch主线程和非主线程的快捷写法<br>
+<br>
+   // try catch<br>
+   + (NSException *)tryCatch:(void(^)())block;<br>
+   + (NSException *)tryCatch:(void(^)())block finally:(void(^)())aFinisheBlock;<br>
+   <br>
+   // 在主线程运行block<br>
+   + (void)performInMainThreadBlock:(void(^)())aInMainBlock;<br>
+   <br>
+   //延时在主线程运行block<br>
+   + (void)performInMainThreadBlock:(void(^)())aInMainBlock afterSecond:(NSTimeInterval)delay;<br>
+   <br>
+   //在非主线程运行block<br>
+   + (void)performInThreadBlock:(void(^)())aInThreadBlock;<br>
+   <br>
+   //延时在非主线程运行block<br>
+   + (void)performInThreadBlock:(void(^)())aInThreadBlock afterSecond:(NSTimeInterval)delay;<br>
+<br>
+   3.Runtime 覆盖方法、交换方法<br>
+<br>
+   + (BOOL)overrideMethod:(SEL)origSel withMethod:(SEL)altSel;<br>
+   <br>
+   + (BOOL)overrideClassMethod:(SEL)origSel withClassMethod:(SEL)altSel;<br>
+   <br>
+   + (BOOL)exchangeMethod:(SEL)origSel withMethod:(SEL)altSel;<br>
+   <br>
+   + (BOOL)exchangeClassMethod:(SEL)origSel withClassMethod:(SEL)altSel;<br>
+  <br>
    ### UIView && UIImage && UIButton && UIColor
-   **UIView**：
-   ```
-   @interface UIView (Category)
-   //把View加在Window上
-   - (void) addToWindow;
-   @end
-   
-   @interface UIView (Screenshot)
-   //View截图
-   - (UIImage*) screenshot;
-   
-   //ScrollView截图 contentOffset
-   - (UIImage*) screenshotForScrollViewWithContentOffset:(CGPoint)contentOffset;
-   
-   //View按Rect截图
-   - (UIImage*) screenshotInFrame:(CGRect)frame;
-   @end
-   
-   @interface UIView (Animation)
-   //左右抖动动画
-   - (void) shakeAnimation;
-   
-   //旋转180度
-   - (void) trans180DegreeAnimation;
-   @end
-   ```
-   
-   **UIImage**：这里内容很多我只列出一部分，具体的大家可以down或者clone下来之后仔细看
-   ```
-   //由颜色生成图片
-   + (UIImage *) imageWithColor:(UIColor*)color;
-   
-   //将图片剪裁至目标尺寸
-   + (UIImage *) imageByScalingAndCroppingForSourceImage:(UIImage *)sourceImage targetSize:(CGSize)targetSize;
-   
-   //图片旋转角度
-   - (UIImage *) imageRotatedByDegrees:(CGFloat)degrees;
-   
-   //拉伸图片UIEdgeInsets
-   - (UIImage *) resizableImage:(UIEdgeInsets)insets;
-   
-   //拉伸图片CGFloat
-   - (UIImage *) imageByResizeToScale:(CGFloat)scale;
-   
-   //放大图片CGSize
-   - (UIImage *) imageByResizeWithMaxSize:(CGSize)size;
-   
-   //小样图图片CGSize
-   - (UIImage *) imageWithThumbnailForSize:(CGSize)size;
-   
-   //通过Rect剪裁图片
-   - (UIImage *) imageByCropToRect:(CGRect)rect;
-   ```
+   **UIView**：<br>
+<br>
+   @interface UIView (Category)<br>
+   //把View加在Window上<br>
+   - (void) addToWindow;<br>
+   @end<br>
+   <br>
+   @interface UIView (Screenshot)<br>
+   //View截图<br>
+   - (UIImage*) screenshot;<br>
+   <br>
+   //ScrollView截图 contentOffset<br>
+   - (UIImage*) screenshotForScrollViewWithContentOffset:(CGPoint)contentOffset;<br>
+   <br>
+   //View按Rect截图<br>
+   - (UIImage*) screenshotInFrame:(CGRect)frame;<br>
+   @end<br>
+   <br>
+   @interface UIView (Animation)<br>
+   //左右抖动动画<br>
+   - (void) shakeAnimation;<br>
+   <br>
+   //旋转180度<br>
+   - (void) trans180DegreeAnimation;<br>
+   @end<br>
+<br>
+   <br>
+   **UIImage**：这里内容很多我只列出一部分，具体的大家可以down或者clone下来之后仔细看<br>
+   `<br>
+   //由颜色生成图片<br>
+   + (UIImage *) imageWithColor:(UIColor*)color;<br>
+   <br>
+   //将图片剪裁至目标尺寸<br>
+   + (UIImage *) imageByScalingAndCroppingForSourceImage:(UIImage *)sourceImage targetSize:(CGSize)targetSize;<br>
+   <br>
+   //图片旋转角度<br>
+   - (UIImage *) imageRotatedByDegrees:(CGFloat)degrees;<br>
+   <br>
+   //拉伸图片UIEdgeInsets<br>
+   - (UIImage *) resizableImage:(UIEdgeInsets)insets;<br>
+   <br>
+   //拉伸图片CGFloat<br>
+   - (UIImage *) imageByResizeToScale:(CGFloat)scale;<br>
+   <br>
+   //放大图片CGSize<br>
+   - (UIImage *) imageByResizeWithMaxSize:(CGSize)size;<br>
+   <br>
+   //小样图图片CGSize<br>
+   - (UIImage *) imageWithThumbnailForSize:(CGSize)size;<br>
+   <br>
+   //通过Rect剪裁图片<br>
+   - (UIImage *) imageByCropToRect:(CGRect)rect;<br>
+<br>
    
    **UIButton**：非常推荐大家使用扩大点击范围的方法（非常实用）
-   ```
-   //扩大点击范围，实用性非常强的一个方法，极力推荐
-   - (void)setEnlargeEdgeWithTop:(CGFloat)top right:(CGFloat)right bottom:(CGFloat)bottom left:(CGFloat)left;
-   
-   //快速添加按钮响应方法，默认为TouchUpInside
-   - (void)addCallBackAction:(ButtonActionCallBack)action;
-   
-   //快速添加按钮响应方法
+<br>
+   //扩大点击范围，实用性非常强的一个方法，极力推荐<br>
+   - (void)setEnlargeEdgeWithTop:(CGFloat)top right:(CGFloat)right bottom:(CGFloat)bottom left:(CGFloat)left;<br>
+   <br>
+   //快速添加按钮响应方法，默认为TouchUpInside<br>
+   - (void)addCallBackAction:(ButtonActionCallBack)action;<br>
+   <br>
+   //快速添加按钮响应方法<br>
    - (void)addCallBackAction:(ButtonActionCallBack)action
-   forControlEvents:(UIControlEvents)controlEvents;
-   ```
+   forControlEvents:(UIControlEvents)controlEvents;<br>
+   <br>
    **UIColor**:rgb、二进制、十六进制转换
-   ```
-   //功能:通过RGB创建颜色
-   UIColor *rgb(CGFloat red, CGFloat green, CGFloat blue);
-   
-   //功能:通过RGB以及alpha创建颜色
-   UIColor *rgbA(CGFloat red, CGFloat green, CGFloat blue, CGFloat alpha);
-   
-   @interface UIColor (Category)
-   // Create a color from a HEX string.
-   + (UIColor *)hex:(NSString *)hexString;
-   
-   //通过0xffffff的16进制数字创建颜色
-   + (UIColor *)colorWithRGB:(NSUInteger)aRGB;
-   
-   //调节颜色的明亮度
-   + (UIColor*) colorRGBonvertToHSB:(UIColor*)color withBrighnessDelta:(CGFloat)delta;
-   
-   //调整颜色的透明度
-   + (UIColor*) colorRGBonvertToHSB:(UIColor*)color withAlphaDelta:(CGFloat)delta;
-   @end
-   ```
-   #结语
-   这边把一些常用的类别给大家列举了一些，基本每个方法都是我在实际项目因为某些需求写的、还有部分是网上找的。如果不会使用可以来询问我，发现错误请及时联系我，不喜勿喷，谢谢~
-   PS:这边就不兼容Pods了，**因为APP在启动的时候会加载所有的分类，全部添加可能会影响启动速度，所以大家可以看了概要之后请选择性的添加**~
-   以后我还会持续更新的！最后放出传送门。。麻烦下载的同学给点个星或者点个赞 ，谢谢啦！
+<br>
+   //功能:通过RGB创建颜色<br>
+   UIColor *rgb(CGFloat red, CGFloat green, CGFloat blue);<br>
+   <br>
+   //功能:通过RGB以及alpha创建颜色<br>
+   UIColor *rgbA(CGFloat red, CGFloat green, CGFloat blue, CGFloat alpha);<br>
+   <br>
+   @interface UIColor (Category)<br>
+   // Create a color from a HEX string.<br>
+   + (UIColor *)hex:(NSString *)hexString;<br>
+   <br>
+   //通过0xffffff的16进制数字创建颜色<br>
+   + (UIColor *)colorWithRGB:(NSUInteger)aRGB;<br>
+   <br>
+   //调节颜色的明亮度<br>
+   + (UIColor*) colorRGBonvertToHSB:(UIColor*)color withBrighnessDelta:(CGFloat)delta;<br>
+   <br>
+   //调整颜色的透明度<br>
+   + (UIColor*) colorRGBonvertToHSB:(UIColor*)color withAlphaDelta:(CGFloat)delta;<br>
+   @end<br>
+<br>
+   #结语<br>
+   这边把一些常用的类别给大家列举了一些，基本每个方法都是我在实际项目因为某些需求写的、还有部分是网上找的。如果不会使用可以来询问我，发现错误请及时联系我，不喜勿喷，谢谢~<br>
+   PS:这边就不兼容Pods了，**因为APP在启动的时候会加载所有的分类，全部添加可能会影响启动速度，所以大家可以看了概要之后请选择性的添加**~<br>
+   以后我还会持续更新的！最后放出传送门。。麻烦下载的同学给点个星或者点个赞 ，谢谢啦！<br>
 [简书地址](http://www.jianshu.com/p/68ba104b9061)
