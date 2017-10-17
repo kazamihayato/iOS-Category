@@ -4,101 +4,101 @@
 
 # 前言
 各位都知道，类别是一种为现有的类添加新方法的方式，利用Objective-C的动态运行时分配机制，可以为现有的类添加新方法，这种为现有的类添加新方法的方式称为类别catagory，他可以为任何类添加新的方法，包括那些没有源代码的类。类别使得无需创建对象类的子类就能完成同样的工作。
-   有许多小技术点靠类别直接实现，从而节约时间将精力花在更重要的开发任务上，现在我来分享一下我从事iOS开发以来积累的Category！
-   **PS:我会不定期进行更新，加入一些新的方法；**
-   
-   ------
-   ##17.8.25更新
+   有许多小技术点靠类别直接实现，从而节约时间将精力花在更重要的开发任务上，现在我来分享一下我从事iOS开发以来积累的Category！<br>
+   **PS:我会不定期进行更新，加入一些新的方法；**<br>
+   <br>
+   ------<br>
+   ##17.8.25更新<br>
    1.进行了局部的重新排版；<br>
    2.添加了NSObject的一些分类方法（具体见下面内容）；<br>
    3.合并了一些类目方法；<br>
    4.整理了整个项目文件夹，条目更加清晰；<br>
    5.添加了更多的注释；<br>
-   
-   
-   ------
-   这边我给大家分享的基本都是常用类，其中包括**NSObject**、 **NSString**、 **NSArray**、**NSDictionary**、**UIView**、**UIImage**、**UIButton**、**UIView**、**UIView**、**NSData**、**UIMenuItem**。
-   
-   以下一个个来进行概要说明：
-   
-   ### NSString && NSAttributedString
-   **NSString** 部分包括：
-   1.一些在项目中常用的方法
+   <br>
+   <br>
+   ------<br>
+   这边我给大家分享的基本都是常用类，其中包括**NSObject**、 **NSString**、 **NSArray**、**NSDictionary**、**UIView**、**UIImage**、**UIButton**、**UIView**、**UIView**、**NSData**、**UIMenuItem**。<br>
+   <br>
+   以下一个个来进行概要说明：<br>
+   <br>
+   ### NSString && NSAttributedString<br>
+   **NSString** 部分包括：<br>
+   1.一些在项目中常用的方法<br>
    ```
-   //电话号码中间4位*显示
-   + (NSString*) getSecrectStringWithPhoneNumber:(NSString*)phoneNum;
-   
-   //银行卡号中间8位*显示
-   + (NSString*) getSecrectStringWithAccountNo:(NSString*)accountNo;
-   
-   //转为手机格式，默认为-
-   + (NSString*) stringMobileFormat:(NSString*)mobile;
-   
-   //金额数字添加单位（暂时写了万和亿，有更多的需求请参考写法来自行添加）
-   + (NSString*) stringChineseFormat:(double)value;
-   
-   //添加数字的千位符
-   + (NSString*) countNumAndChangeformat:(NSString *)num;
-   
-   // NSString转为NSNumber
-   - (NSNumber*) toNumber;
-   
-   //计算文字高度
-   - (CGFloat  ) heightWithFontSize:(CGFloat)fontSize width:(CGFloat)width;
-   
-   //计算文字宽度
-   - (CGFloat  ) widthWithFontSize:(CGFloat)fontSize height:(CGFloat)maxHeight;
-   
-   //抹除小数末尾的0
-   - (NSString*) removeUnwantedZero;
-   
-   //去掉前后空格
-   - (NSString*) trimmedString;
+   //电话号码中间4位*显示<br>
+   + (NSString*) getSecrectStringWithPhoneNumber:(NSString*)phoneNum;<br>
+   <br>
+   //银行卡号中间8位*显示<br>
+   + (NSString*) getSecrectStringWithAccountNo:(NSString*)accountNo;<br>
+   <br>
+   //转为手机格式，默认为-<br>
+   + (NSString*) stringMobileFormat:(NSString*)mobile;<br>
+   <br>
+   //金额数字添加单位（暂时写了万和亿，有更多的需求请参考写法来自行添加）<br>
+   + (NSString*) stringChineseFormat:(double)value;<br>
+   <br>
+   //添加数字的千位符<br>
+   + (NSString*) countNumAndChangeformat:(NSString *)num;<br>
+   <br>
+   // NSString转为NSNumber<br>
+   - (NSNumber*) toNumber;<br>
+   <br>
+   //计算文字高度<br>
+   - (CGFloat  ) heightWithFontSize:(CGFloat)fontSize width:(CGFloat)width;<br>
+   <br>
+   //计算文字宽度<br>
+   - (CGFloat  ) widthWithFontSize:(CGFloat)fontSize height:(CGFloat)maxHeight;<br>
+   <br>
+   //抹除小数末尾的0<br>
+   - (NSString*) removeUnwantedZero;<br>
+   <br>
+   //去掉前后空格<br>
+   - (NSString*) trimmedString;<br>
+   ```<br>
+   2.常用的正则表达式判断<br>
+   ```<br>
+   //有效的电话号码<br>
+   - (BOOL) isValidMobileNumber;<br>
+   <br>
+   //有效的真实姓名<br>
+   - (BOOL) isValidRealName;<br>
+   <br>
+   //是否只有中文<br>
+   - (BOOL) isOnlyChinese;<br>
+   <br>
+   //有效的验证码(根据自家的验证码位数进行修改)<br>
+   - (BOOL) isValidVerifyCode;<br>
+   <br>
+   //有效的银行卡号<br>
+   - (BOOL) isValidBankCardNumber;<br>
+   <br>
+   //有效的邮箱<br>
+   - (BOOL) isValidEmail;<br>
+   <br>
+   //有效的字母数字密码<br>
+   - (BOOL) isValidAlphaNumberPassword;<br>
+   <br>
+   //检测有效身份证<br>
+   //15位<br>
+   - (BOOL) isValidIdentifyFifteen;<br>
+   <br>
+   //18位<br>
+   - (BOOL) isValidIdentifyEighteen;<br>
+   <br>
+   //限制只能输入数字<br>
+   - (BOOL) isOnlyNumber;<br>
    ```
-   2.常用的正则表达式判断
+   3.从时间戳转为显示时间（几小时前等）<br>
    ```
-   //有效的电话号码
-   - (BOOL) isValidMobileNumber;
-   
-   //有效的真实姓名
-   - (BOOL) isValidRealName;
-   
-   //是否只有中文
-   - (BOOL) isOnlyChinese;
-   
-   //有效的验证码(根据自家的验证码位数进行修改)
-   - (BOOL) isValidVerifyCode;
-   
-   //有效的银行卡号
-   - (BOOL) isValidBankCardNumber;
-   
-   //有效的邮箱
-   - (BOOL) isValidEmail;
-   
-   //有效的字母数字密码
-   - (BOOL) isValidAlphaNumberPassword;
-   
-   //检测有效身份证
-   //15位
-   - (BOOL) isValidIdentifyFifteen;
-   
-   //18位
-   - (BOOL) isValidIdentifyEighteen;
-   
-   //限制只能输入数字
-   - (BOOL) isOnlyNumber;
-   ```
-   3.从时间戳转为显示时间（几小时前等）
-   ```
-   //通过时间戳计算时间差（几小时前、几天前）
-   + (NSString *) compareCurrentTime:(NSTimeInterval) compareDate;
-   
-   //通过时间戳得出显示时间
-   + (NSString *) getDateStringWithTimestamp:(NSTimeInterval)timestamp;
-   
-   //通过时间戳和格式显示时间
-   + (NSString *) getStringWithTimestamp:(NSTimeInterval)timestamp formatter:(NSString*)formatter;
-   ```
+   //通过时间戳计算时间差（几小时前、几天前）<br>
+   + (NSString *) compareCurrentTime:(NSTimeInterval) compareDate;<br>
+   <br>
+   //通过时间戳得出显示时间<br>
+   + (NSString *) getDateStringWithTimestamp:(NSTimeInterval)timestamp;<br>
+   <br>
+   //通过时间戳和格式显示时间<br>
+   + (NSString *) getStringWithTimestamp:(NSTimeInterval)timestamp formatter:(NSString*)formatter;<br>
+   ```<br>
    4.提高NSString && NSMutableString 健壮性的写法（建议各位平时操作NSString及NSMutableString尽量使用，减少闪退）
    **NSString**：
    ```
