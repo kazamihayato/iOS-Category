@@ -58,6 +58,7 @@
 {
     NSNumberFormatter *moneyFormatter = [[NSNumberFormatter alloc] init];
     moneyFormatter.positiveFormat = @"###,###";
+    //如要增加小数点请自行修改为@"###,###,##"
     return [moneyFormatter stringFromNumber:[num toNumber]];
 }
 
