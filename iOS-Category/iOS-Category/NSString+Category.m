@@ -56,31 +56,9 @@
 
 +(NSString *)countNumAndChangeformat:(NSString *)num
 {
-    NSMutableString *temp = [NSMutableString stringWithString:num];
-    NSRange afterPointRange=NSMakeRange(num.length-3, 3);
-    NSString * afterPoint=[temp substringWithRange:afterPointRange];
-    [temp deleteCharactersInRange:afterPointRange];
-    
-    int count = 0;
-    long long int a = temp.longLongValue;
-    while (a != 0)
-    {
-        count++;
-        a /= 10;
-    }
-    NSMutableString *string = [NSMutableString stringWithString:temp];
-    NSMutableString *newstring = [NSMutableString string];
-    while (count > 3) {
-        count -= 3;
-        NSRange rang = NSMakeRange(string.length - 3, 3);
-        NSString *str = [string substringWithRange:rang];
-        [newstring insertString:str atIndex:0];
-        [newstring insertString:@"," atIndex:0];
-        [string deleteCharactersInRange:rang];
-    }
-    [newstring insertString:string atIndex:0];
-    [newstring insertString:afterPoint atIndex:newstring.length];
-    return newstring;
+    NSNumberFormatter *moneyFormatter = [[NSNumberFormatter alloc] init];
+    moneyFormatter.positiveFormat = @"###,###";
+    return [moneyFormatter stringFromNumber:[num toNumber]];
 }
 
 -(CGFloat)heightWithFontSize:(CGFloat)fontSize width:(CGFloat)width
