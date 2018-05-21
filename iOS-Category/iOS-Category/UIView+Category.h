@@ -24,6 +24,8 @@
 //View按Rect截图
 - (UIImage*) screenshotInFrame:(CGRect)frame;
 
+//整个view转成图片
+- (UIImage*) convertToImage;
 @end
 
 @interface UIView (Animation)

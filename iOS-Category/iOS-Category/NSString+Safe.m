@@ -9,6 +9,7 @@
 #import "NSString+Safe.h"
 
 @implementation NSString (Safe)
+
 - (NSString *)safeSubstringFromIndex:(NSUInteger)from
 {
     if (from > self.length) {

@@ -8,54 +8,101 @@
 
 #import "NSObject+Swizzle.h"
 #import <objc/runtime.h>
+
 @implementation NSObject (Swizzle)
-+ (BOOL)overrideMethod:(SEL)origSel withMethod:(SEL)altSel
++ (void)overrideInstanceMethod:(SEL)origSelector withInstanceMethod:(SEL)newSelector
 {
-    Method origMethod =class_getInstanceMethod(self, origSel);
-    if (!origMethod) {
-        NSLog(@"original method %@ not found for class %@", NSStringFromSelector(origSel), [self class]);
-        return NO;
+    Class class = [self class];
+    
+    Method originalMethod = class_getInstanceMethod(class, origSelector);
+    if (!originalMethod) {
+        NSLog(@"original method %@ not found for class %@", NSStringFromSelector(origSelector), [self class]);
+        return;
+    }
+
+    Method overrideMethod = class_getInstanceMethod(class, newSelector);
+    if (!overrideMethod) {
+        NSLog(@"original method %@ not found for class %@", NSStringFromSelector(newSelector), [self class]);
+        return;
     }
     
-    Method altMethod =class_getInstanceMethod(self, altSel);
-    if (!altMethod) {
-        NSLog(@"original method %@ not found for class %@", NSStringFromSelector(altSel), [self class]);
-        return NO;
-    }
     
-    method_setImplementation(origMethod, class_getMethodImplementation(self, altSel));
-    return YES;
+    BOOL didAddMethod = class_addMethod(class,
+                                        origSelector,
+                                        method_getImplementation(overrideMethod),
+                                        method_getTypeEncoding(overrideMethod));
+    if (didAddMethod) {
+        class_replaceMethod(class,
+                            newSelector,
+                            method_getImplementation(originalMethod),
+                            method_getTypeEncoding(originalMethod));
+    } else {
+        method_setImplementation(originalMethod, class_getMethodImplementation(self, newSelector));
+    }
 }
 
-+ (BOOL)overrideClassMethod:(SEL)origSel withClassMethod:(SEL)altSel
++ (void)overrideClassMethod:(SEL)origSelector withClassMethod:(SEL)newSelector
 {
-    Class c = object_getClass((id)self);
-    return [c overrideMethod:origSel withMethod:altSel];
+    Class class = [self class];
+    
+    Method originalMethod = class_getClassMethod(class, origSelector);
+    Method overrideMethod = class_getClassMethod(class, newSelector);
+    
+    BOOL didAddMethod = class_addMethod(class,
+                                        origSelector,
+                                        method_getImplementation(overrideMethod),
+                                        method_getTypeEncoding(overrideMethod));
+    if (didAddMethod) {
+        class_replaceMethod(class,
+                            newSelector,
+                            method_getImplementation(originalMethod),
+                            method_getTypeEncoding(originalMethod));
+    } else {
+        method_setImplementation(originalMethod, class_getMethodImplementation(self, newSelector));
+    }
 }
 
-+ (BOOL)exchangeMethod:(SEL)origSel withMethod:(SEL)altSel
+
++ (void)exchangeInstanceMethod:(SEL)origSelector withInstanceMethod:(SEL)newSelector
 {
-    Method origMethod =class_getInstanceMethod(self, origSel);
-    if (!origMethod) {
-        NSLog(@"original method %@ not found for class %@", NSStringFromSelector(origSel), [self class]);
-        return NO;
+    Class class = [self class];
+    
+    Method originalMethod = class_getInstanceMethod(class, origSelector);
+    Method swizzledMethod = class_getInstanceMethod(class, newSelector);
+    
+    BOOL didAddMethod = class_addMethod(class,
+                                        origSelector,
+                                        method_getImplementation(swizzledMethod),
+                                        method_getTypeEncoding(swizzledMethod));
+    if (didAddMethod) {
+        class_replaceMethod(class,
+                            newSelector,
+                            method_getImplementation(originalMethod),
+                            method_getTypeEncoding(originalMethod));
+    } else {
+        method_exchangeImplementations(originalMethod, swizzledMethod);
     }
-    
-    Method altMethod =class_getInstanceMethod(self, altSel);
-    if (!altMethod) {
-        NSLog(@"original method %@ not found for class %@", NSStringFromSelector(altSel), [self class]);
-        return NO;
-    }
-    
-    method_exchangeImplementations(class_getInstanceMethod(self, origSel),class_getInstanceMethod(self, altSel));
-    
-    return YES;
 }
 
-+ (BOOL)exchangeClassMethod:(SEL)origSel withClassMethod:(SEL)altSel
++ (void)exchangeClassMethod:(SEL)origSelector withClassMethod:(SEL)newSelector
 {
-    Class c = object_getClass((id)self);
-    return [c exchangeMethod:origSel withMethod:altSel];
+    Class class = [self class];
+    
+    Method originalMethod = class_getClassMethod(class, origSelector);
+    Method swizzledMethod = class_getClassMethod(class, newSelector);
+    
+    BOOL didAddMethod = class_addMethod(class,
+                                        origSelector,
+                                        method_getImplementation(swizzledMethod),
+                                        method_getTypeEncoding(swizzledMethod));
+    if (didAddMethod) {
+        class_replaceMethod(class,
+                            newSelector,
+                            method_getImplementation(originalMethod),
+                            method_getTypeEncoding(originalMethod));
+    } else {
+        method_exchangeImplementations(originalMethod, swizzledMethod);
+    }
 }
 
 @end

@@ -1,16 +1,14 @@
 //
-//  NSMutableArray+Category.h
-//  PKWSevers
+//  NSMutableArray+Safe.h
+//  iOS-Category
 //
-//  Created by peikua on 16/5/25.
-//  Copyright © 2016年 peikua. All rights reserved.
+//  Created by 庄BB的MacBook on 2018/5/18.
+//  Copyright © 2018年 BBFC. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface NSMutableArray (Category)
-
-//建议每次对Array操作时都用以下方法，提高健壮性
+@interface NSMutableArray (Safe)
 - (void)safeAddObject:(id)object;
 
 - (void)safeInsertObject:(id)object atIndex:(NSUInteger)index;
@@ -20,5 +18,4 @@
 - (void)safeRemoveObjectAtIndex:(NSUInteger)index;
 
 - (void)safeRemoveObjectsInRange:(NSRange)range;
-
 @end

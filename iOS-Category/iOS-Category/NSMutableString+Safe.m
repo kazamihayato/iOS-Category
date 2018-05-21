@@ -9,6 +9,7 @@
 #import "NSMutableString+Safe.h"
 
 @implementation NSMutableString (Safe)
+
 - (void)safeInsertString:(NSString *)aString atIndex:(NSUInteger)loc
 {
     if (aString == nil) {

@@ -74,6 +74,15 @@
     return image;
 }
 
+-(UIImage *) convertToImage {
+    CGSize viewSize = self.bounds.size;
+    UIGraphicsBeginImageContextWithOptions(viewSize, NO, [UIScreen mainScreen].scale);
+    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage*image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 @end
 
 @implementation UIView (Animation)

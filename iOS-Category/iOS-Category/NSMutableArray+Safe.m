@@ -1,31 +1,14 @@
 //
-//  NSMutableArray+Category.m
-//  PKWSevers
+//  NSMutableArray+Safe.m
+//  iOS-Category
 //
-//  Created by peikua on 16/5/25.
-//  Copyright © 2016年 peikua. All rights reserved.
+//  Created by 庄BB的MacBook on 2018/5/18.
+//  Copyright © 2018年 BBFC. All rights reserved.
 //
 
-#import "NSMutableArray+Category.h"
+#import "NSMutableArray+Safe.h"
 
-@implementation NSMutableArray (Category)
-
-- (void)safeSetObject:(id)obj atIndexedSubscript:(NSUInteger)idx
-{
-    if (obj == nil) {
-        return ;
-    }
-    
-    if (self.count < idx) {
-        return ;
-    }
-    
-    if (idx == self.count) {
-        [self addObject:obj];
-    } else {
-        [self replaceObjectAtIndex:idx withObject:obj];
-    }
-}
+@implementation NSMutableArray (Safe)
 
 - (void)safeAddObject:(id)object
 {
@@ -78,5 +61,4 @@
         [self removeObjectsInRange:range];
     }
 }
-
 @end

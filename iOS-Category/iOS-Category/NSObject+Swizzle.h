@@ -10,12 +10,17 @@
 
 @interface NSObject (Swizzle)
 
-+ (BOOL)overrideMethod:(SEL)origSel withMethod:(SEL)altSel;
+//覆盖实例方法
++ (void)overrideInstanceMethod:(SEL)origSelector withInstanceMethod:(SEL)newSelector;
 
-+ (BOOL)overrideClassMethod:(SEL)origSel withClassMethod:(SEL)altSel;
+//覆盖类方法
++ (void)overrideClassMethod:(SEL)origSelector withClassMethod:(SEL)newSelector;
 
-+ (BOOL)exchangeMethod:(SEL)origSel withMethod:(SEL)altSel;
 
-+ (BOOL)exchangeClassMethod:(SEL)origSel withClassMethod:(SEL)altSel;
+//拦截实例方法
++ (void)exchangeInstanceMethod:(SEL)origSelector withInstanceMethod:(SEL)newSelector;
+
+//拦截类方法
++ (void)exchangeClassMethod:(SEL)origSelector withClassMethod:(SEL)newSelector;
 
 @end

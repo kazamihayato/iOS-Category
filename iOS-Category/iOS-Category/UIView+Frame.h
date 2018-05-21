@@ -21,6 +21,7 @@
 - (CGFloat)centerY;
 - (CGFloat)maxX;
 - (CGFloat)maxY;
+
 - (void)setLeft:(CGFloat)left;
 - (void)setRight:(CGFloat)right;
 - (void)setSize:(CGSize)size;

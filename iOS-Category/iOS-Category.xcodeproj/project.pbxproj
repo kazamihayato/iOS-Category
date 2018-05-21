@@ -10,7 +10,6 @@
 		3D8217E11D3F45A20077850F /* NSAttributedString+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8217A61D3F45A20077850F /* NSAttributedString+Category.m */; };
 		3D8217E31D3F45A20077850F /* NSData+CommonCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8217AA1D3F45A20077850F /* NSData+CommonCryptor.m */; };
 		3D8217E41D3F45A20077850F /* NSDictionary+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8217AC1D3F45A20077850F /* NSDictionary+Category.m */; };
-		3D8217E51D3F45A20077850F /* NSMutableArray+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8217AE1D3F45A20077850F /* NSMutableArray+Category.m */; };
 		3D8217E81D3F45A20077850F /* NSString+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8217B41D3F45A20077850F /* NSString+Category.m */; };
 		3D8217EA1D3F45A20077850F /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8217B81D3F45A20077850F /* NSString+MD5.m */; };
 		3D8217EF1D3F45A20077850F /* UIButton+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8217C21D3F45A20077850F /* UIButton+Category.m */; };
@@ -22,13 +21,16 @@
 		3D82180F1D3F6A930077850F /* NSString+DisplayTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D82180E1D3F6A930077850F /* NSString+DisplayTime.m */; };
 		3DC904131F4D748700E56004 /* NSObject+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC904121F4D748700E56004 /* NSObject+Category.m */; };
 		3DC904161F4D790F00E56004 /* NSObject+PerformBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC904151F4D790F00E56004 /* NSObject+PerformBlock.m */; };
-		3DC904191F4D798C00E56004 /* NSObject+Swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC904181F4D798C00E56004 /* NSObject+Swizzle.m */; };
 		3DC9041C1F4D7E6E00E56004 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC9041B1F4D7E6E00E56004 /* UIView+Frame.m */; };
 		3DC9041F1F4D87E200E56004 /* UIColor+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC9041E1F4D87E200E56004 /* UIColor+Category.m */; };
 		3DC904221F4EAE2F00E56004 /* NSString+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC904211F4EAE2F00E56004 /* NSString+Safe.m */; };
 		3DC904251F4EB8CD00E56004 /* NSMutableString+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC904241F4EB8CD00E56004 /* NSMutableString+Safe.m */; };
 		3DD78BCD1F669053003B8E9F /* UITableView+CellAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD78BCC1F669053003B8E9F /* UITableView+CellAnimation.m */; };
-		3DFA22E11D4A73BB008F340E /* NSMutableDictionary+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFA22E01D4A73BB008F340E /* NSMutableDictionary+Category.m */; };
+		3DFAD8EC20AEA1400067ACDE /* NSDictionary+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAD8EB20AEA1400067ACDE /* NSDictionary+Safe.m */; };
+		3DFAD8EF20AEA1870067ACDE /* NSMutableDictionary+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAD8EE20AEA1870067ACDE /* NSMutableDictionary+Safe.m */; };
+		3DFAD8F220AEA7F80067ACDE /* NSArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAD8F120AEA7F80067ACDE /* NSArray+Safe.m */; };
+		3DFAD8F520AEB58C0067ACDE /* NSMutableArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAD8F420AEB58C0067ACDE /* NSMutableArray+Safe.m */; };
+		3DFAD93820B2E0960067ACDE /* NSObject+Swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAD93720B2E0950067ACDE /* NSObject+Swizzle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,8 +53,6 @@
 		3D8217AA1D3F45A20077850F /* NSData+CommonCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCryptor.m"; sourceTree = "<group>"; };
 		3D8217AB1D3F45A20077850F /* NSDictionary+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Category.h"; sourceTree = "<group>"; };
 		3D8217AC1D3F45A20077850F /* NSDictionary+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Category.m"; sourceTree = "<group>"; };
-		3D8217AD1D3F45A20077850F /* NSMutableArray+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Category.h"; sourceTree = "<group>"; };
-		3D8217AE1D3F45A20077850F /* NSMutableArray+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Category.m"; sourceTree = "<group>"; };
 		3D8217B31D3F45A20077850F /* NSString+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Category.h"; sourceTree = "<group>"; };
 		3D8217B41D3F45A20077850F /* NSString+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Category.m"; sourceTree = "<group>"; };
 		3D8217B71D3F45A20077850F /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
@@ -75,8 +75,6 @@
 		3DC904121F4D748700E56004 /* NSObject+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Category.m"; sourceTree = "<group>"; };
 		3DC904141F4D790F00E56004 /* NSObject+PerformBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PerformBlock.h"; sourceTree = "<group>"; };
 		3DC904151F4D790F00E56004 /* NSObject+PerformBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PerformBlock.m"; sourceTree = "<group>"; };
-		3DC904171F4D798C00E56004 /* NSObject+Swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Swizzle.h"; sourceTree = "<group>"; };
-		3DC904181F4D798C00E56004 /* NSObject+Swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Swizzle.m"; sourceTree = "<group>"; };
 		3DC9041A1F4D7E6E00E56004 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		3DC9041B1F4D7E6E00E56004 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		3DC9041D1F4D87E200E56004 /* UIColor+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Category.h"; sourceTree = "<group>"; };
@@ -87,8 +85,16 @@
 		3DC904241F4EB8CD00E56004 /* NSMutableString+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+Safe.m"; sourceTree = "<group>"; };
 		3DD78BCB1F669053003B8E9F /* UITableView+CellAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+CellAnimation.h"; sourceTree = "<group>"; };
 		3DD78BCC1F669053003B8E9F /* UITableView+CellAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+CellAnimation.m"; sourceTree = "<group>"; };
-		3DFA22DF1D4A73BB008F340E /* NSMutableDictionary+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Category.h"; sourceTree = "<group>"; };
-		3DFA22E01D4A73BB008F340E /* NSMutableDictionary+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Category.m"; sourceTree = "<group>"; };
+		3DFAD8EA20AEA1400067ACDE /* NSDictionary+Safe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Safe.h"; sourceTree = "<group>"; };
+		3DFAD8EB20AEA1400067ACDE /* NSDictionary+Safe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Safe.m"; sourceTree = "<group>"; };
+		3DFAD8ED20AEA1870067ACDE /* NSMutableDictionary+Safe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Safe.h"; sourceTree = "<group>"; };
+		3DFAD8EE20AEA1870067ACDE /* NSMutableDictionary+Safe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Safe.m"; sourceTree = "<group>"; };
+		3DFAD8F020AEA7F80067ACDE /* NSArray+Safe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Safe.h"; sourceTree = "<group>"; };
+		3DFAD8F120AEA7F80067ACDE /* NSArray+Safe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Safe.m"; sourceTree = "<group>"; };
+		3DFAD8F320AEB58C0067ACDE /* NSMutableArray+Safe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Safe.h"; sourceTree = "<group>"; };
+		3DFAD8F420AEB58C0067ACDE /* NSMutableArray+Safe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Safe.m"; sourceTree = "<group>"; };
+		3DFAD93620B2E0950067ACDE /* NSObject+Swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Swizzle.h"; sourceTree = "<group>"; };
+		3DFAD93720B2E0950067ACDE /* NSObject+Swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Swizzle.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,8 +176,10 @@
 			children = (
 				3D8218011D3F514F0077850F /* NSArray+Category.h */,
 				3D8218021D3F514F0077850F /* NSArray+Category.m */,
-				3D8217AD1D3F45A20077850F /* NSMutableArray+Category.h */,
-				3D8217AE1D3F45A20077850F /* NSMutableArray+Category.m */,
+				3DFAD8F020AEA7F80067ACDE /* NSArray+Safe.h */,
+				3DFAD8F120AEA7F80067ACDE /* NSArray+Safe.m */,
+				3DFAD8F320AEB58C0067ACDE /* NSMutableArray+Safe.h */,
+				3DFAD8F420AEB58C0067ACDE /* NSMutableArray+Safe.m */,
 			);
 			name = NSArray;
 			sourceTree = "<group>";
@@ -181,8 +189,10 @@
 			children = (
 				3D8217AB1D3F45A20077850F /* NSDictionary+Category.h */,
 				3D8217AC1D3F45A20077850F /* NSDictionary+Category.m */,
-				3DFA22DF1D4A73BB008F340E /* NSMutableDictionary+Category.h */,
-				3DFA22E01D4A73BB008F340E /* NSMutableDictionary+Category.m */,
+				3DFAD8EA20AEA1400067ACDE /* NSDictionary+Safe.h */,
+				3DFAD8EB20AEA1400067ACDE /* NSDictionary+Safe.m */,
+				3DFAD8ED20AEA1870067ACDE /* NSMutableDictionary+Safe.h */,
+				3DFAD8EE20AEA1870067ACDE /* NSMutableDictionary+Safe.m */,
 			);
 			name = NSDictionary;
 			sourceTree = "<group>";
@@ -246,12 +256,12 @@
 		3DC904101F4D746C00E56004 /* NSObject */ = {
 			isa = PBXGroup;
 			children = (
+				3DFAD93620B2E0950067ACDE /* NSObject+Swizzle.h */,
+				3DFAD93720B2E0950067ACDE /* NSObject+Swizzle.m */,
 				3DC904111F4D748700E56004 /* NSObject+Category.h */,
 				3DC904121F4D748700E56004 /* NSObject+Category.m */,
 				3DC904141F4D790F00E56004 /* NSObject+PerformBlock.h */,
 				3DC904151F4D790F00E56004 /* NSObject+PerformBlock.m */,
-				3DC904171F4D798C00E56004 /* NSObject+Swizzle.h */,
-				3DC904181F4D798C00E56004 /* NSObject+Swizzle.m */,
 			);
 			name = NSObject;
 			sourceTree = "<group>";
@@ -321,23 +331,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DFAD93820B2E0960067ACDE /* NSObject+Swizzle.m in Sources */,
+				3DFAD8EF20AEA1870067ACDE /* NSMutableDictionary+Safe.m in Sources */,
 				3D82180F1D3F6A930077850F /* NSString+DisplayTime.m in Sources */,
-				3DFA22E11D4A73BB008F340E /* NSMutableDictionary+Category.m in Sources */,
 				3D8217E31D3F45A20077850F /* NSData+CommonCryptor.m in Sources */,
+				3DFAD8F520AEB58C0067ACDE /* NSMutableArray+Safe.m in Sources */,
 				3DC9041C1F4D7E6E00E56004 /* UIView+Frame.m in Sources */,
 				3D8217E81D3F45A20077850F /* NSString+Category.m in Sources */,
-				3DC904191F4D798C00E56004 /* NSObject+Swizzle.m in Sources */,
 				3DD78BCD1F669053003B8E9F /* UITableView+CellAnimation.m in Sources */,
 				3DC904131F4D748700E56004 /* NSObject+Category.m in Sources */,
 				3D8217EA1D3F45A20077850F /* NSString+MD5.m in Sources */,
 				3D8217E11D3F45A20077850F /* NSAttributedString+Category.m in Sources */,
 				3D8217EF1D3F45A20077850F /* UIButton+Category.m in Sources */,
+				3DFAD8F220AEA7F80067ACDE /* NSArray+Safe.m in Sources */,
 				3D8217E41D3F45A20077850F /* NSDictionary+Category.m in Sources */,
 				3DC904161F4D790F00E56004 /* NSObject+PerformBlock.m in Sources */,
 				3DC904221F4EAE2F00E56004 /* NSString+Safe.m in Sources */,
 				3D8217F71D3F45A20077850F /* UIMenuItem+Category.m in Sources */,
 				3D8217FB1D3F45A20077850F /* UIView+Category.m in Sources */,
-				3D8217E51D3F45A20077850F /* NSMutableArray+Category.m in Sources */,
+				3DFAD8EC20AEA1400067ACDE /* NSDictionary+Safe.m in Sources */,
 				3D8217F51D3F45A20077850F /* UIImage+Category.m in Sources */,
 				3DC904251F4EB8CD00E56004 /* NSMutableString+Safe.m in Sources */,
 				3D8218091D3F5ECB0077850F /* NSString+Predicate.m in Sources */,
