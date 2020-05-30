@@ -9,6 +9,17 @@
 #import "NSString+Safe.h"
 
 @implementation NSString (Safe)
++ (instancetype)noNULLStringWithFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1, 2) {
+    va_list arglist;
+    va_start(arglist, format);
+    NSString *outStr = [[NSString alloc] initWithFormat:format arguments:arglist];
+    va_end(arglist);
+
+    if ([outStr containsString:@"(null)"])
+        return [outStr stringByReplacingOccurrencesOfString:@"(null)" withString:@""];
+    return outStr;
+}
+
 
 - (NSString *)safeSubstringFromIndex:(NSUInteger)from
 {
@@ -64,6 +75,14 @@
     } else {
         return [self stringByAppendingString:aString];
     }
+}
+
+- (NSString *)safeStringByReplacingCharactersInRange:(NSRange)aRange withString:(NSString *)aString
+{
+    if (aString == nil || ![aString isKindOfClass:[NSString class]]) {
+        return self;
+    }
+    return [self safeStringByReplacingCharactersInRange:aRange withString:aString];
 }
 
 @end

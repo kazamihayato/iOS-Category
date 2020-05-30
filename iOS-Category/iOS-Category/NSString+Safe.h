@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (Safe)
+//避免Format所得的字符串带有null
++ (instancetype)noNULLStringWithFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1,2);
 
 - (NSString *)safeSubstringFromIndex:(NSUInteger)from;
 
@@ -22,4 +24,5 @@
 
 - (NSString *)safeStringByAppendingString:(NSString *)aString;
 
+- (NSString *)safeStringByReplacingCharactersInRange:(NSRange)aRange withString:(NSString *)aString;
 @end

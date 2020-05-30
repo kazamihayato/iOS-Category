@@ -10,10 +10,23 @@
 
 @implementation NSDictionary (Category)
 
-- (NSString *)TransToJSONString
-{
-    NSData *paramsJSONData = [NSJSONSerialization dataWithJSONObject:self options:0 error:nil];
-    return [[NSString alloc] initWithData:paramsJSONData encoding:NSUTF8StringEncoding];
++ (NSDictionary *)JSONStringTransToDic:(NSString *)JSONString {
+    if (JSONString == nil) {
+        return nil;
+    }
+    NSData *jsonData = [JSONString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                         
+                                                        options:NSJSONReadingMutableContainers
+                         
+                                                          error:&err];
+    if(err) {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
 }
+
 
 @end

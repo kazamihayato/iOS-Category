@@ -8,6 +8,29 @@
 #import "NSString+Category.h"
 
 @implementation NSString (Category)
++ (NSString *) dicTransToJSONStringWith:(NSDictionary *)dic{
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&error];
+    NSString *jsonString;
+    if (!jsonData) {
+       return nil;
+    }else{
+       jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+
+    NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
+    //去掉字符串中的空格
+    NSRange range = {0,jsonString.length};
+    [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
+    
+    //去掉字符串中的换行符
+    NSRange range2 = {0,mutStr.length};
+    [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
+    return mutStr;
+}
+
+
+
 
 + (NSString*) getSecrectStringWithPhoneNumber:(NSString*)phoneNum
 {

@@ -10,6 +10,9 @@
 #import <UIKit/UIKit.h>
 
 @interface NSString (Category)
+/// 字典转Json字符串
+/// @param dic
++ (NSString *) dicTransToJSONStringWith:(NSDictionary *)dic;
 /**
  电话号码中间4位*显示
 
