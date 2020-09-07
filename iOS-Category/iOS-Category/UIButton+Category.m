@@ -9,17 +9,42 @@
 #import "UIButton+Category.h"
 #import <objc/runtime.h>
 
+@interface UIButton ()
+@property(nonatomic ,copy) ButtonActionCallBack block;
+@end
+
 @implementation UIButton (Category)
 
 -(void)addCallBackAction:(ButtonActionCallBack)action
         forControlEvents:(UIControlEvents)controlEvents
 {
-    [self addCallBackAction:action forControlEvents:controlEvents];
+    self.block = action;
+    [self addTarget:self action:@selector(click:)forControlEvents:controlEvents];
 }
 
 -(void)addCallBackAction:(ButtonActionCallBack)action
 {
     [self addCallBackAction:action forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void)click:(UIButton*)btn
+{
+    if(self.block) {
+        self.block(btn);
+    }
+}
+
+-(void)setBlock:(void(^)(UIButton*))block
+
+{
+    objc_setAssociatedObject(self,@selector(block), block,OBJC_ASSOCIATION_COPY_NONATOMIC);
+    
+}
+
+-(void(^)(UIButton*))block
+
+{
+    return objc_getAssociatedObject(self,@selector(block));
 }
 @end
 
